@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design tokens — mirrored in tailwind.config.ts; kept here for
+     plain-CSS use (gradients, keyframes) in later steps too. */
+  --bg: #0a0a0a;
+  --surface: #141210;
+  --gold: #c9a24b;
+  --gold-light: #e6c877;
+  --gold-deep: #8f7230;
+  --cream: #f3ede0;
+  --muted: #a89f8c;
+  /* Standard easing shared by every animation on the site. */
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* Gold gradient text used by the wordmark and intro headline. */
+.text-gold-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--gold-light) 0%,
+    var(--gold) 45%,
+    var(--gold-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Thin gold rule used under headings. */
+.gold-rule {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  height: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
