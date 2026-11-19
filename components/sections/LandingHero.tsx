@@ -116,10 +116,10 @@ export default function LandingHero() {
     setFailed((prev) => new Set(prev).add(index));
   }, []);
 
-  // Smooth-scroll to the section below the hero (gold "Explore" button).
+  // Smooth-scroll to the cooking steps section (gold "Explore" button).
   const explore = useCallback(() => {
     document
-      .getElementById("next-section")
+      .getElementById("steps")
       ?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
   }, [reducedMotion]);
 

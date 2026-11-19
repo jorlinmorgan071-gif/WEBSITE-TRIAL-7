@@ -1,5 +1,6 @@
 import LandingHero from "@/components/sections/LandingHero";
 import NextSection from "@/components/sections/NextSection";
+import StepsSection from "@/components/sections/StepsSection";
 import WelcomeIntro from "@/components/WelcomeIntro";
 
 export default function Home() {
@@ -9,7 +10,9 @@ export default function Home() {
       <WelcomeIntro />
       {/* FEATURE B: full-screen auto-advancing landing slides */}
       <LandingHero />
-      {/* Placeholder so the hero scroll-fade can be tested */}
+      {/* STEP 2: floating cooking-steps viewer ("Explore" scrolls here) */}
+      <StepsSection />
+      {/* Placeholder so the page keeps scrolling after the steps */}
       <NextSection />
     </main>
   );
