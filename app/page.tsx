@@ -1,6 +1,7 @@
 import LandingHero from "@/components/sections/LandingHero";
-import NextSection from "@/components/sections/NextSection";
 import StepsSection from "@/components/sections/StepsSection";
+import ProductsSection from "@/components/sections/ProductsSection";
+import OrderPlaceholder from "@/components/sections/OrderPlaceholder";
 import WelcomeIntro from "@/components/WelcomeIntro";
 
 export default function Home() {
@@ -12,8 +13,10 @@ export default function Home() {
       <LandingHero />
       {/* STEP 2: floating cooking-steps viewer ("Explore" scrolls here) */}
       <StepsSection />
-      {/* Placeholder so the page keeps scrolling after the steps */}
-      <NextSection />
+      {/* STEP 3: product listing with WhatsApp ordering */}
+      <ProductsSection />
+      {/* Step 4 stub: online ordering and payment (target of "Order online") */}
+      <OrderPlaceholder />
     </main>
   );
 }
