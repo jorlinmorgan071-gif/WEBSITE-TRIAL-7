@@ -1,10 +1,10 @@
 "use client";
 
 /**
- * STEP 3 — "Get Your Fried Omena" product section.
- * Data-driven: one product renders the featured showcase; two or more
- * switch to a responsive product grid (1 column mobile, 2 tablet,
- * 3 desktop). All content comes from lib/products.ts and lib/business.ts.
+ * STEP 3 — "Get Your Fried Omena" product section (STEP 4A: data now comes
+ * from the server — database catalogue with lib/products.ts fallback).
+ * One product renders the featured showcase; two or more switch to a
+ * responsive product grid (1 column mobile, 2 tablet, 3 desktop).
  *
  * The whole block enters with one small fade + rise the first time it
  * scrolls into view; product photos only start loading then too, keeping
@@ -14,16 +14,22 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  PRODUCTS,
   PRODUCTS_EYEBROW,
   PRODUCTS_HEADING,
   PRODUCTS_SUBHEADING,
+  type Product,
 } from "@/lib/products";
 import { EASE_LUXE } from "@/lib/design-tokens";
 import ProductShowcase from "@/components/ProductShowcase";
 import ProductCard from "@/components/ProductCard";
 
-export default function ProductsSection() {
+/**
+ * STEP 4A — the section is now data-driven from the server: the page passes
+ * the database-backed catalogue (or the lib/products.ts fallback when the
+ * database is unreachable). One product renders the featured showcase; two or
+ * more switch to the responsive product grid.
+ */
+export default function ProductsSection({ products }: { products: Product[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   /** True once the section has entered the viewport (entrance reveal). */
   const [entered, setEntered] = useState(false);
@@ -82,18 +88,23 @@ export default function ProductsSection() {
         transition={{ duration: reducedMotion ? 0 : 0.7, ease: EASE_LUXE }}
         style={{ opacity: entered ? undefined : 0 }}
       >
-        {PRODUCTS.length === 1 ? (
+        {products.length === 1 ? (
           <ProductShowcase
-            product={PRODUCTS[0]}
+            product={products[0]}
             entered={entered}
             reducedMotion={reducedMotion}
           />
-        ) : (
+        ) : products.length > 1 ? (
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {PRODUCTS.map((p) => (
+            {products.map((p) => (
               <ProductCard key={p.id} product={p} entered={entered} />
             ))}
           </div>
+        ) : (
+          <p className="mx-auto mt-8 max-w-md font-sans text-sm leading-relaxed text-muted">
+            Our menu is being updated right now. Please order on WhatsApp — we
+            reply fast.
+          </p>
         )}
       </motion.div>
     </section>

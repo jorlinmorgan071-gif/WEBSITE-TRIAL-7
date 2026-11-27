@@ -19,6 +19,8 @@ yarn-error.log*
 
 # env files - never commit secrets
 .env*
+# …but the template with names only IS committed (Step 4A requirement).
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -26,3 +28,7 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# local embedded Postgres test database (scripts/dev-db.mjs)
+/.pgdata/
+/.pgtest-tmp/

@@ -19,9 +19,26 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Lake Flavour — Crisp. Golden. Straight from the lake.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+  title: {
+    default: "Lake Flavour — Crisp. Golden. Straight from the lake.",
+    template: "%s — Lake Flavour",
+  },
   description:
-    "Premium Fried Omena: crispy dried lake fish from Kenya. Crisp. Golden. Straight from the lake.",
+    "Premium Fried Omena: crispy dried lake fish from Lake Victoria, Kenya. Order online — delivered within Nairobi. Pay on delivery with cash or M-Pesa.",
+  openGraph: {
+    title: "Lake Flavour — Fried Omena, delivered in Nairobi",
+    description:
+      "Crispy fried omena from Lake Victoria. Order online — delivered within Nairobi, pay on delivery.",
+    images: ["/og-image.jpg"],
+    type: "website",
+    siteName: "Lake Flavour",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {
